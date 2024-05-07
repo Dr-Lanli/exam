@@ -6,7 +6,7 @@
 /*   By: lmonsat <lmonsat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:16:35 by lmonsat           #+#    #+#             */
-/*   Updated: 2024/05/07 03:01:12 by lmonsat          ###   ########.fr       */
+/*   Updated: 2024/05/07 16:41:57 by lmonsat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
 
 /* Level 1 */
 
@@ -267,6 +268,152 @@ void print_bit(unsigned char octet)
 }
 
 
+size_t ft_strcspn(const char *s, const char *reject)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (s[i])
+    {
+        j = 0;
+        while (reject[j])
+        {
+            if (s[i] == reject[j])
+            {
+                return (i);
+            }
+            j++;
+        }
+        i++;
+    }
+    return (i);
+}
+
+size_t	ft_strspn(const char *s, const char *accept)
+{
+    int i;
+    int j;
+    int bytes_in_accept;
+
+    i = 0;
+    while (s[i])
+    {
+        j = 0;
+        bytes_in_accept = 0;
+        while (accept[j])
+        {
+            if (s[i] == accept[j])
+            {
+                bytes_in_accept = 1;
+            }
+            j++;
+        }
+        if (bytes_in_accept == 0)
+        {
+            return (i);
+        }
+        i++;
+    }
+    return (i);
+}
+
+char    *ft_strdup(char *src)
+{
+    char *src_mem;
+    int len;
+    int i;
+
+    len = 0;
+    while (src[len])
+    {
+        len++;
+    }
+    src_mem = malloc ((len + 1) * sizeof(char));
+    if (src_mem == NULL)
+    {
+        return(NULL);
+    }
+    i = 0;
+    while (src[i])
+    {
+        src_mem[i] = src[i];
+        i++;
+    }
+    src_mem[i] = 0;
+    return (src_mem);
+}
+
+char	*ft_strpbrk(const char *s1, const char *s2)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (s1[i])
+    {
+        j = 0;
+        while (s2[j])
+        {
+            if (s1[i] == s2[j])
+            {
+                return (s1[i]);
+            }
+            j++;
+        }
+        i++;
+    }
+    return (NULL);    
+}
+
+
+char    *ft_strrev(char *str)
+{
+    char temp;
+    int len;
+    int i;
+
+    len = 0;
+    i = 0;
+    while (str[len])
+    {
+        len++;
+    }
+    while (i < len -1)
+    {
+        temp = str[i];
+        str[i] = str[len - 1];
+        str[len - 1] = temp;
+        len--;
+        i++;
+    }
+    return(str);
+}
+void last_world(int argc, char *argv[])
+{
+    int i;
+
+    i = 0;
+    if (argc == 2)
+    {
+        while (argv[1][i])
+        {
+            i++;
+        }
+        i--;
+        while (argv[1][i] > 32)
+        {
+            i--;
+        }
+        i++;
+        while (argv[1][i])
+        {
+            write(1, &argv[1][i++], 1);
+        }
+    }
+}
+
+
 int main (int argc, char *argv[])
 {
     //do_op(argc, argv);
@@ -277,4 +424,22 @@ int main (int argc, char *argv[])
     //repeat_alpha(argc, argv);
     //search_and_replace(argc, argv);
     //ulstr(argc, argv);
+
+	/*char *s = "hello";
+	const char *accept = "jfkhpell";
+	printf("%zu\n", ft_strspn(s, accept));
+
+    char *s2 = "hello";
+	const char *accept2 = "jfkhpell";
+	printf("%zu\n", strspn(s2, accept2));*/
+
+    //printf("%s\n", ft_strdup("Hello, World!"));
+
+	/*char ss[] = "Hello, World!";
+	ft_strrev(ss);
+	printf("%s\n", ss);*/
+
+    //last_world(argc, argv);
+
+
 }

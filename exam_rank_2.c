@@ -6,7 +6,7 @@
 /*   By: lmonsat <lmonsat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:16:35 by lmonsat           #+#    #+#             */
-/*   Updated: 2024/05/07 16:41:57 by lmonsat          ###   ########.fr       */
+/*   Updated: 2024/05/09 23:38:05 by lmonsat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,29 @@ void camel_to_snake(int argc, char *argv[])
                 write(1, "_", 1);
             }
             write(1, &argv[1][i], 1);
+            i++;
+        }
+    }
+    write(1, "\n", 1);
+}
+
+void snake_to_camel(int argc, char *argv[])
+{
+    int i;
+
+    if (argc == 2)
+    {
+        i = 0;
+        while (argv[1][i])
+        {
+            if (argv[1][i] == *"_")
+            {
+                argv[1][i + 1] -= 32;
+            }
+            else
+            {
+                write(1, &argv[1][i], 1);
+            }
             i++;
         }
     }
@@ -389,6 +412,7 @@ char    *ft_strrev(char *str)
     }
     return(str);
 }
+
 void last_world(int argc, char *argv[])
 {
     int i;
@@ -413,12 +437,105 @@ void last_world(int argc, char *argv[])
     }
 }
 
+int is_power_of_2(unsigned int n)
+{
+    int i;
+
+    i = 1;
+    while (i <= n)
+    {
+        i = i * 2;
+        if (i == n)
+        {
+            return (1);
+        }
+    }
+    return (0);
+}
+
+int	max(int* tab, unsigned int len)
+{
+    int count;
+    int result;
+    int i;
+
+    count = 0;
+    result = 0;
+    i = 0;
+
+    if (len > 0)
+    {
+        while (tab[i])
+        {
+            
+        }
+        
+        return (result);
+    }
+    return (0);
+    
+}
+
+int	ft_max(int* tab, unsigned int len)
+{
+    int count;
+    int result;
+    int i;
+
+    count = 0;
+    i = 0;
+    result = 0;
+    if (len > 0)
+    {
+        while (count < len)
+        {
+            if (result < tab[i])
+            {
+                result = tab[i];
+            }
+            count++;
+            i++;
+        }
+        return (result);
+    }
+    return (0); 
+}
+
+int wdmatch(int argc, char *argv[])
+{
+
+    const char *s1 = argv[1];
+    const char *s2 = argv[2];
+    int len = 0;
+    int i = 0;
+    
+    while (s1[len])
+    {
+        len++;
+    }
+    while (i < len && *s2)
+    {
+        if (s1[i] == *s2++)
+        {
+            i++;
+        }
+    }
+
+    if (i == len)
+    {
+        write(1, s1, len);
+    }
+
+    return (0);
+}
+
 
 int main (int argc, char *argv[])
 {
     //do_op(argc, argv);
     //alpha_mirror(argc, argv);
     //camel_to_snake(argc, argv);
+    //snake_to_camel(argc, argv);
     //ft_putnbr(255);
     //fizz_buzz();
     //repeat_alpha(argc, argv);
@@ -440,6 +557,13 @@ int main (int argc, char *argv[])
 	printf("%s\n", ss);*/
 
     //last_world(argc, argv);
+
+    //printf("%d", is_power_of_2(16));
+
+    /*int int_tab[] = {1, 3, 2, 10, 9};
+	printf("%d", ft_max(int_tab, 5));*/
+
+    //wdmatch(argc, argv);
 
 
 }

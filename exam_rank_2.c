@@ -6,7 +6,11 @@
 /*   By: lmonsat <lmonsat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:16:35 by lmonsat           #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2024/05/29 18:57:51 by lmonsat          ###   ########.fr       */
+=======
 /*   Updated: 2024/05/28 21:50:29 by lmonsat          ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -743,6 +747,26 @@ void hidenp(int argc, char *argv[])
     int i = 0;
     int j = 0;
 
+<<<<<<< HEAD
+    if (argc == 3)
+    {
+        while (argv[2][j] && argv[1][i])
+        {
+            if (argv[2][j] == argv[1][i])
+            {
+                i++;
+            }
+            j++;
+        }
+        if (argv[1][i] == 0)
+        {
+            write(1, "1", 1);
+        }
+        else
+        {
+            write(1, "0", 1);
+        }
+=======
     while (argv[2][j] && argv[1][i])
     {
         if (argv[2][j] == argv[1][i])
@@ -758,6 +782,7 @@ void hidenp(int argc, char *argv[])
     else
     {
         write(1, "0", 1);
+>>>>>>> refs/remotes/origin/main
     }
     write(1, "\n", 1);
 }

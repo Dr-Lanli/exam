@@ -6,13 +6,10 @@
 /*   By: lmonsat <lmonsat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:16:35 by lmonsat           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/05/29 18:57:51 by lmonsat          ###   ########.fr       */
-=======
-/*   Updated: 2024/05/28 21:50:29 by lmonsat          ###   ########.fr       */
->>>>>>> refs/remotes/origin/main
+/*   Updated: 2024/05/30 19:47:32 by lmonsat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #include <stdlib.h>
@@ -20,7 +17,8 @@
 #include <unistd.h>
 #include <string.h>
 
-/* Level 1 */
+/* ---- Level 1 ---- */
+#pragma region Level_1
 
 void ft_putnbr(int n)
 {
@@ -143,8 +141,10 @@ void ulstr(int argc, char *argv[])
     write(1, "\n", 1);
 }
 
-/* Level 2 */
+#pragma endregion
 
+/* ---- Level 2 ---- */
+#pragma region Level_2
 void alpha_mirror(int argc, char *argv[])
 {
     int i;
@@ -600,7 +600,11 @@ void ft_inter(int argc, char *argv[])
 	}
     write(1, "\n", 1);
 }
-/* Level 3 */
+
+#pragma endregion
+
+/* ---- Level 3 ---- */
+#pragma region Level_3
 
 int is_space(char c)
 {
@@ -746,8 +750,6 @@ void hidenp(int argc, char *argv[])
 {
     int i = 0;
     int j = 0;
-
-<<<<<<< HEAD
     if (argc == 3)
     {
         while (argv[2][j] && argv[1][i])
@@ -766,7 +768,7 @@ void hidenp(int argc, char *argv[])
         {
             write(1, "0", 1);
         }
-=======
+    }
     while (argv[2][j] && argv[1][i])
     {
         if (argv[2][j] == argv[1][i])
@@ -782,10 +784,10 @@ void hidenp(int argc, char *argv[])
     else
     {
         write(1, "0", 1);
->>>>>>> refs/remotes/origin/main
     }
     write(1, "\n", 1);
 }
+
 unsigned int lcm(unsigned int a, unsigned int b)
 {
     unsigned int g = (a < b) ? a : b;
@@ -993,7 +995,32 @@ void tab_mult(int argc, char *argv[])
     }
 }
 
-/* Level 4 */
+#pragma endregion
+
+/* ---- Level 4 ---- */
+#pragma region Level_4
+
+typedef struct  s_point
+{
+int           x;
+int           y;
+}               t_point;
+
+void fill(char **tab, t_point size, t_point cur, char to_fill)
+{
+	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x || tab[cur.y][cur.x] != to_fill)
+		return;
+        
+	tab[cur.y][cur.x] = 'F';
+	fill(tab, size, (t_point){cur.x - 1, cur.y}, to_fill);
+	fill(tab, size, (t_point){cur.x + 1, cur.y}, to_fill);
+	fill(tab, size, (t_point){cur.x, cur.y - 1}, to_fill);
+	fill(tab, size, (t_point){cur.x, cur.y + 1}, to_fill);
+}
+void flood_fill(char **tab, t_point size, t_point begin)
+{
+    fill(tab, size, begin,tab[begin.x][begin.y]);
+}
 
 void f_prime(int argc, char *argv[])
 {
@@ -1044,12 +1071,14 @@ void sort_int_tab(int *tab, unsigned int size)
     }
 }
 
+#pragma endregion
+
 int main (int argc, char *argv[])
 {
     //do_op(argc, argv);
     //alpha_mirror(argc, argv);
     //camel_to_snake(argc, argv);
-    //snake_to_camel(argc, argv);
+    snake_to_camel(argc, argv);
     //ft_putnbr(255);
     //fizz_buzz();
     //repeat_alpha(argc, argv);

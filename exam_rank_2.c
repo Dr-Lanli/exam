@@ -6,11 +6,7 @@
 /*   By: lmonsat <lmonsat@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 16:16:35 by lmonsat           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/05/30 19:47:32 by lmonsat          ###   ########.fr       */
-=======
-/*   Updated: 2024/06/26 01:06:48 by lmonsat          ###   ########.fr       */
->>>>>>> 4c6cd70 (update)
+/*   Updated: 2024/07/01 00:36:34 by lmonsat          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +17,8 @@
 #include <unistd.h>
 #include <string.h>
 
-<<<<<<< HEAD
-/* ---- Level 1 ---- */
-=======
 /* <----------------- Level 1 -----------------> */
 
->>>>>>> 4c6cd70 (update)
 #pragma region Level_1
 
 void ft_putnbr(int n)
@@ -156,13 +148,10 @@ void ulstr(int argc, char *argv[])
 }
 
 #pragma endregion
-<<<<<<< HEAD
-=======
 
 /* <----------------- Level 2 -----------------> */
 
 #pragma region Level_2
->>>>>>> 4c6cd70 (update)
 
 /* ---- Level 2 ---- */
 #pragma region Level_2
@@ -625,10 +614,6 @@ void ft_inter(int argc, char *argv[])
 
 #pragma endregion
 
-<<<<<<< HEAD
-/* ---- Level 3 ---- */
-#pragma region Level_3
-=======
 /* <----------------- Level 3 -----------------> */
 
 #pragma region Level_3
@@ -684,7 +669,6 @@ void add_prime_sum(int argc, char *argv[])
     write(1, "\n", 1);
 }
 
->>>>>>> 4c6cd70 (update)
 
 int is_space(char c)
 {
@@ -1042,12 +1026,8 @@ void tab_mult(int argc, char *argv[])
 
 #pragma endregion
 
-<<<<<<< HEAD
-/* ---- Level 4 ---- */
-=======
 /* <----------------- Level 4 -----------------> */
 
->>>>>>> 4c6cd70 (update)
 #pragma region Level_4
 
 typedef struct  s_point
@@ -1056,23 +1036,6 @@ int           x;
 int           y;
 }               t_point;
 
-<<<<<<< HEAD
-void fill(char **tab, t_point size, t_point cur, char to_fill)
-{
-	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x || tab[cur.y][cur.x] != to_fill)
-		return;
-        
-	tab[cur.y][cur.x] = 'F';
-	fill(tab, size, (t_point){cur.x - 1, cur.y}, to_fill);
-	fill(tab, size, (t_point){cur.x + 1, cur.y}, to_fill);
-	fill(tab, size, (t_point){cur.x, cur.y - 1}, to_fill);
-	fill(tab, size, (t_point){cur.x, cur.y + 1}, to_fill);
-}
-void flood_fill(char **tab, t_point size, t_point begin)
-{
-    fill(tab, size, begin,tab[begin.x][begin.y]);
-}
-=======
 void fill(char **tab, t_point size, char target, int row, int col)
 {
     if (row < 0 || col < 0 || row >= size.y || col >= size.x)
@@ -1196,7 +1159,6 @@ void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 }
 
 // Explication https://chatgpt.com/share/00eb0c3e-cd8f-4fe4-b41a-7da6a4cb50ef
->>>>>>> 4c6cd70 (update)
 
 void f_prime(int argc, char *argv[])
 {
@@ -1257,10 +1219,6 @@ void sort_int_tab(int *tab, unsigned int size)
     }
 }
 
-<<<<<<< HEAD
-#pragma endregion
-
-=======
 // Explications https://chatgpt.com/share/0eb901b3-df32-4b9e-a771-608ed02050ec
 
 char *ft_strncpy(char *dest, const char *src, size_t n)
@@ -1470,13 +1428,12 @@ t_list *sort_list(t_list* lst, int (*cmp)(int, int))
 #pragma endregion
 
 
->>>>>>> 4c6cd70 (update)
 int main (int argc, char *argv[])
 {
     //do_op(argc, argv);
     //alpha_mirror(argc, argv);
     //camel_to_snake(argc, argv);
-    snake_to_camel(argc, argv);
+    //snake_to_camel(argc, argv);
     //ft_putnbr(255);
     //fizz_buzz();
     //repeat_alpha(argc, argv);
@@ -1487,7 +1444,7 @@ int main (int argc, char *argv[])
 	const char *accept = "jfkhpell";
 	printf("%zu\n", ft_strspn(s, accept));
 
-    char *s2 = "hello";
+    char *s2 = "hello";s
 	const char *accept2 = "jfkhpell";
 	printf("%zu\n", strspn(s2, accept2));*/
 

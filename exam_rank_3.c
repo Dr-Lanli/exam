@@ -40,7 +40,7 @@ int ft_putstr(char *str)
 	{
 		return (0);
 	}
-	while (*str)
+	while (str && *str)
 	{
 		write(1, str++, 1);
 		len++;
@@ -74,7 +74,7 @@ int ft_printf(const char *str, ...)
 	int len = 0;
 
 	va_start(args, str);
-	while (str)
+	while (str && *str)
 	{
 		if (*str == '%')
 		{
@@ -95,7 +95,7 @@ int ft_printf(const char *str, ...)
 #include <stdio.h>
 int main()
 {
-	//ft_putstr("ceci est un test");
+	ft_putstr("ceci est un test");
 	printf("%d\n", ft_puthex(15));
 	return (0);
 }

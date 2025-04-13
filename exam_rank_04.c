@@ -104,24 +104,24 @@ int	main(int argc, char **argv, char **envp)
 #pragma region microshell_custom
 
 // Affiche une chaîne sur la sortie d'erreur
-void	print_error(const char *msg)
+void	print_error(const char *str)
 {
-	while (*msg)
-		write(2, msg++, 1);
+	while (*str)
+		write(2, str++, 1);
 }
 
 // Implémentation de la commande 'cd'
-int	builtin_cd(char **args)
+int	builtin_cd(char **argv)
 {
-	if (!args[1] || args[2])
+	if (!argv[1] || argv[2])
 	{
 		print_error("error: cd: bad arguments\n");
 		return (1);
 	}
-	if (chdir(args[1]) < 0)
+	if (chdir(argv[1]) < 0)
 	{
 		print_error("error: cd: cannot change directory to ");
-		print_error(args[1]);
+		print_error(argv[1]);
 		print_error("\n");
 		return (1);
 	}
@@ -142,15 +142,15 @@ void	setup_pipe(int is_pipe, int *pipe_fd, int end)
 }
 
 // Exécute une commande avec ou sans pipe
-int	execute_command(char **args, int split_index, char **env)
+int	execute_command(char **argv, int split_index, char **envp)
 {
-	int	is_pipe = args[split_index] && !strcmp(args[split_index], "|");
+	int	is_pipe = argv[split_index] && !strcmp(argv[split_index], "|");
 	int	pipe_fd[2];
 	int	pid;
 	int	status;
 
-	if (!is_pipe && !strcmp(args[0], "cd"))
-		return (builtin_cd(args));
+	if (!is_pipe && !strcmp(argv[0], "cd"))
+		return (builtin_cd(argv));
 
 	if (is_pipe && pipe(pipe_fd) < 0)
 	{
@@ -166,15 +166,15 @@ int	execute_command(char **args, int split_index, char **env)
 
 	if (pid == 0) // processus enfant
 	{
-		args[split_index] = NULL;
+		argv[split_index] = NULL;
 		setup_pipe(is_pipe, pipe_fd, STDOUT_FILENO);
 		
-		if (!strcmp(args[0], "cd"))
-			exit(builtin_cd(args));
+		if (!strcmp(argv[0], "cd"))
+			exit(builtin_cd(argv));
 
-		execve(args[0], args, env);
+		execve(argv[0], argv, envp);
 		print_error("error: cannot execute ");
-		print_error(args[0]);
+		print_error(argv[0]);
 		print_error("\n");
 		exit(1);
 	}
@@ -186,7 +186,7 @@ int	execute_command(char **args, int split_index, char **env)
 }
 
 // Point d'entrée du programme
-int	main(int argc, char *argv[], char *env[])
+int	main(int argc, char *argv[], char *envp[])
 {
 	(void)argc;
 	int	status = 0;
@@ -202,7 +202,7 @@ int	main(int argc, char *argv[], char *env[])
 			cmd_len++;
 
 		if (cmd_len > 0)
-			status = execute_command(argv, cmd_len, env);
+			status = execute_command(argv, cmd_len, envp);
 
 		argv += cmd_len;
 		if (*argv && (!strcmp(*argv, "|") || !strcmp(*argv, ";")))
